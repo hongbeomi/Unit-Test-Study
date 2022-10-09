@@ -8,6 +8,6 @@ class MessageRenderer : IRenderer {
         FooterRenderer(),
     )
 
-    override fun render(message: Message): String = subRenderers.joinToString { it.render(message) }
+    override fun render(message: Message): String = subRenderers.joinToString(separator = "") { it.render(message) }
 
 }

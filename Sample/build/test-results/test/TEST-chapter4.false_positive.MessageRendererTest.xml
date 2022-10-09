@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="chapter4.false_positive.MessageRendererTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-09T06:45:22" hostname="anhongbeom-ui-MacBookAir.local" time="0.022">
+<testsuite name="chapter4.false_positive.MessageRendererTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-10-09T06:50:23" hostname="anhongbeom-ui-MacBookAir.local" time="0.033">
   <properties/>
-  <testcase name="MessageRenderer 소스 코드를_읽고_검사()" classname="chapter4.false_positive.MessageRendererTest" time="0.022"/>
+  <testcase name="안정된 버전의 하위 렌더링 클래스가_예상한 타입과 일치하고 올바른 순서로 나타내는지_검증()" classname="chapter4.false_positive.MessageRendererTest" time="0.028"/>
+  <testcase name="하위 렌더링 클래스가_예상한 타입과 일치하고 올바른 순서로 나타내는지_검증()" classname="chapter4.false_positive.MessageRendererTest" time="0.0"/>
+  <testcase name="MessageRenderer 소스 코드를_읽고_검사()" classname="chapter4.false_positive.MessageRendererTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -34,11 +34,20 @@ internal class MessageRendererTest {
                     "        FooterRenderer(),\n" +
                     "    )" +
                     "\n\n" +
-                    "    override fun render(message: Message): String = subRenderers.joinToString { it.render(message) }" +
+                    "    override fun render(message: Message): String = subRenderers.joinToString(separator = \"\")" +
+                    " { it.render(message) }" +
                     "\n\n" +
                     "}",
             sourceCode
         )
+    }
+
+    @Test
+    fun `안정된 버전의 하위 렌더링 클래스가_예상한 타입과 일치하고 올바른 순서로 나타내는지_검증`() {
+        val sut = MessageRenderer()
+        val message = Message("h", "b", "f")
+        val html = sut.render(message)
+        assertEquals("<h1>h</h1><b>b</b><i>f</i>", html)
     }
 
 }
