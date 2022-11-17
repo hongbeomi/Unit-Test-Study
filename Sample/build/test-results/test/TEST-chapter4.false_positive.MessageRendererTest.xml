@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="chapter4.false_positive.MessageRendererTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-12T11:47:36" hostname="anhongbeom-ui-MacBookAir.local" time="0.147">
+  <properties/>
+  <testcase name="안정된 버전의 하위 렌더링 클래스가_예상한 타입과 일치하고 올바른 순서로 나타내는지_검증()" classname="chapter4.false_positive.MessageRendererTest" time="0.147"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
