@@ -2,11 +2,13 @@ package chapter7
 
 import chapter7.step3.Company
 import chapter7.step3.Company.Companion.EMAIL_DELIMITER
+import chapter7.step5.EmailChangedEvent
 
 data class User(
     var userId: Int,
     var email: String,
-    var type: UserType
+    var type: UserType,
+    var isEmailConfirmed: Boolean,
 ) {
 
     fun changeEmail(userId: Int, newEmail: String) {
@@ -99,5 +101,66 @@ data class User(
         email = newEmail
         type = newType
     }
+
+    private fun canChangeEmail(): String? {
+        if (isEmailConfirmed) return "Can`t change a confirmed email"
+        return null
+    }
+
+    fun changeEmailStep4(newEmail: String, company: Company) {
+        require(canChangeEmail() == null)
+
+        if (email == newEmail) {
+            return
+        }
+        val newType = if (company.isEmailCorporate(newEmail)) {
+            UserType.Employee
+        } else {
+            UserType.Customer
+        }
+
+        if (type != newType) {
+            val delta = if (newType == UserType.Employee) {
+                1
+            } else {
+                -1
+            }
+            company.changeNumberOfEmployees(delta)
+        }
+
+        email = newEmail
+        type = newType
+    }
+
+    private val _emailChangedEvents: MutableList<EmailChangedEvent> = mutableListOf()
+    val emailChangedEvents: List<EmailChangedEvent> = _emailChangedEvents
+
+    fun changeEmailStep5(newEmail: String, company: Company) {
+        require(canChangeEmail() == null)
+
+        if (email == newEmail) {
+            return
+        }
+        val newType = if (company.isEmailCorporate(newEmail)) {
+            UserType.Employee
+        } else {
+            UserType.Customer
+        }
+
+        if (type != newType) {
+            val delta = if (newType == UserType.Employee) {
+                1
+            } else {
+                -1
+            }
+            company.changeNumberOfEmployees(delta)
+        }
+
+        email = newEmail
+        type = newType
+
+        _emailChangedEvents.add(EmailChangedEvent(userId, newEmail))
+    }
+
 
 }

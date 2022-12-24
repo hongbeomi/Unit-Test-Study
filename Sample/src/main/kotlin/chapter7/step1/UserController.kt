@@ -17,7 +17,7 @@ class UserController {
         val email = data[1] as String
         val type = data[2] as UserType
 
-        val user = User(userId, email, type)
+        val user = User(userId, email, type, false)
 
         val companyData = _database.getCompany()
         val companyDomainName = companyData[0] as String
@@ -63,6 +63,39 @@ class UserController {
         _database.saveCompany(company)
         _database.saveUser(user)
         _messageBus.sendEmailChangedMessage(userId, newEmail)
+    }
+
+    fun changeEmailStep4(userId: Int, newEmail: String) {
+        val userData = _database.getUserById(userId)
+
+        val user = UserFactory.create(userData)
+
+        val companyData = _database.getCompany()
+        val company = CompanyFactory.create(companyData)
+
+        user.changeEmailStep4(newEmail, company)
+
+        _database.saveCompany(company)
+        _database.saveUser(user)
+        _messageBus.sendEmailChangedMessage(userId, newEmail)
+    }
+
+    fun changeEmailStep5(userId: Int, newEmail: String) {
+        val userData = _database.getUserById(userId)
+
+        val user = UserFactory.create(userData)
+
+        val companyData = _database.getCompany()
+        val company = CompanyFactory.create(companyData)
+
+        user.changeEmailStep5(newEmail, company)
+
+        _database.saveCompany(company)
+        _database.saveUser(user)
+
+        user.emailChangedEvents.forEach {
+            _messageBus.sendEmailChangedMessage(it.userId, it.newEmail)
+        }
     }
 
 }
