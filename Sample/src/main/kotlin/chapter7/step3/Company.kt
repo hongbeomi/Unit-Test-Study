@@ -1,8 +1,8 @@
 package chapter7.step3
 
 data class Company(
-    private val domainName: String,
-    private var numberOfEmployees: Int
+    val domainName: String,
+    var numberOfEmployees: Int
 ) {
 
     companion object {

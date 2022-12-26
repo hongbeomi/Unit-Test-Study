@@ -102,7 +102,7 @@ data class User(
         type = newType
     }
 
-    private fun canChangeEmail(): String? {
+    fun canChangeEmail(): String? {
         if (isEmailConfirmed) return "Can`t change a confirmed email"
         return null
     }
